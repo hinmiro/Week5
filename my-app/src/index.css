@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   font-family: system-ui, sans-serif;
   line-height: 1.5;
@@ -76,7 +80,7 @@ td a {
 }
 
 /* media item dialog */
-dialog {
+/*dialog {
   position: fixed;
   top: 5%;
   height: 80dvh;
@@ -89,13 +93,14 @@ dialog img,
 video {
   height: 70%;
   object-fit: contain;
-}
+}*/
 
 /* single view */
-img,
+/*img,
 video {
   max-width: 100%;
-}
+}*/
+
 
 /* Form */
 form {
@@ -133,7 +138,7 @@ form textarea {
   border-radius: 5px;
 }
 
-button {
+/*button {
   margin: 10px 0;
   padding: 10px;
   border-radius: 5px;
@@ -141,4 +146,4 @@ button {
   color: white;
   border: none;
   cursor: pointer;
-}
+}*/
