@@ -16,7 +16,7 @@ const MediaRow = (props) => {
   );
 };
 
-MediaRow.protoTypes = {
+MediaRow.propTypes = {
   item: PropTypes.object.isRequired,
 };
 
