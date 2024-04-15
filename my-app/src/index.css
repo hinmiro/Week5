@@ -74,7 +74,6 @@ td a {
   color: white;
   text-decoration: none;
   background-color: #363636;
-  color: white;
   border: none;
   padding: 0.5rem;
 }
@@ -100,7 +99,6 @@ video {
 video {
   max-width: 100%;
 }*/
-
 
 /* Form */
 form {
