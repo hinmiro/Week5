@@ -1,6 +1,7 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 const Single = () => {
+  const location = useLocation();
   const { state } = useLocation();
   const params = useParams();
   const navigate = useNavigate();

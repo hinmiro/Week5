@@ -1,10 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Link, Outlet } from "react-router-dom";
 
 const Layout = () => {
   return (
-    <div>
+    <>
       <header>
         <h1 className={"font-semibold"}>(●'◡'●)</h1>
         <nav>
@@ -12,10 +11,10 @@ const Layout = () => {
             Home 🐸
           </Link>
           <Link className={"font-light"} to="/profile">
-            Profile
+            Profile 🐲
           </Link>
           <Link className={"font-light"} to="/upload">
-            Upload
+            Upload 🦄
           </Link>
         </nav>
       </header>
@@ -23,7 +22,7 @@ const Layout = () => {
         <Outlet />
       </main>
       <footer>Copyright 2024</footer>
-    </div>
+    </>
   );
 };
 

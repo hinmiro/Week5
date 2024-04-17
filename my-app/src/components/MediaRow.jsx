@@ -14,16 +14,11 @@ const MediaRow = ({ item }) => {
       <td>{item.media_type}</td>
       <td>
         <Link to={`/media/${item.media_id}`} state={{ item }}>
-          Show
+          View
         </Link>
       </td>
     </tr>
   );
-};
-
-MediaRow.propTypes = {
-  item: PropTypes.object.isRequired,
-  setSelectedItem: PropTypes.func.isRequired,
 };
 
 export default MediaRow;
