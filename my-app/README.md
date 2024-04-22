@@ -1,3 +1,3 @@
-## Routing assignment
+## Hooks assignment
 
-[Link to public/html](https://users.metropolia.fi/~mirohi/WebOhjelmointi/Week5/Routing/dist/)
+[Link to public/html](https://users.metropolia.fi/~mirohi/WebOhjelmointi/Week6/Hooks/dist/)
