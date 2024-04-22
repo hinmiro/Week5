@@ -16,6 +16,7 @@ const Layout = () => {
           <Link className={"font-light"} to="/upload">
             Upload 🦄
           </Link>
+          <Link to="/login">Login🍆</Link>
         </nav>
       </header>
       <main>
