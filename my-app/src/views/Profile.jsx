@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useUser } from "../hooks/apiHooks.js";
+import { useUserContext } from "../contexts/UserContext.jsx";
+import UserData from "../components/UI/UserData.jsx";
 
 const Profile = () => {
-  const [user, setUser] = useState(null);
+  const { user, setUser } = useUserContext(null);
   const { getUserByToken } = useUser();
 
   useEffect(() => {
@@ -23,13 +25,7 @@ const Profile = () => {
         <h1>Profile page</h1>
       </div>
       <div>
-        {user && (
-          <>
-            <p>Username: {user.username}</p>
-            <p>Email: {user.email}</p>
-            <p>Created: {user.created_at}</p>
-          </>
-        )}
+        <UserData />
       </div>
     </>
   );

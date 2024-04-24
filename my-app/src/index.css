@@ -8,8 +8,8 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: dimgrey;
+  color: rebeccapurple;
+  background-color: plum;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -36,14 +36,16 @@ nav ul {
 
 nav a {
   display: block;
-  color: white;
   text-align: center;
   padding: 1rem;
   text-decoration: none;
 }
 
 nav a:hover {
-  background-color: #111111;
+  background-color: rebeccapurple;
+  border-radius: 10px;
+  text-transform: uppercase;
+  color: plum;
 }
 
 /* media item card */
@@ -78,29 +80,6 @@ td a {
   padding: 0.5rem;
 }
 
-/* media item dialog */
-/*dialog {
-  position: fixed;
-  top: 5%;
-  height: 80dvh;
-  background: rgba(0, 0, 0, 0.8);
-  z-index: 9999;
-  color: rgba(255, 255, 255, 0.87);
-}
-
-dialog img,
-video {
-  height: 70%;
-  object-fit: contain;
-}*/
-
-/* single view */
-/*img,
-video {
-  max-width: 100%;
-}*/
-
-/* Form */
 form {
   display: flex;
   flex-direction: column;

@@ -1,31 +1,18 @@
 // LoginForm.jsx
 import useForm from "../hooks/formHooks.js";
-import { useAuthentication } from "../hooks/apiHooks.js";
-import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import { useUserContext } from "../contexts/UserContext.jsx";
 
 const LoginForm = ({ setToggleForm }) => {
-  const navigate = useNavigate();
-  const { login } = useAuthentication();
+  const { handleLogin } = useUserContext();
 
   const initValues = {
     username: "",
     password: "",
   };
 
-  const doLogin = async () => {
-    try {
-      const userData = await login(inputs);
-      console.log("doLogin userdata: ", userData);
-      localStorage.setItem("token", userData.token);
-      navigate("/");
-    } catch (err) {
-      alert(err.message);
-    }
-  };
-
   const { handleSubmit, handleInputChange, inputs } = useForm(
-    doLogin,
+    () => handleLogin(inputs),
     initValues,
   );
 
