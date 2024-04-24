@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import Button from "./UI/Button.jsx";
 import Single from "../views/Single.jsx";
 
 const SingleView = (props) => {

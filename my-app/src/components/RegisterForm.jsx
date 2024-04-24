@@ -32,50 +32,56 @@ const RegisterForm = ({ setToggleForm }) => {
   console.log(inputs);
   return (
     <>
-      <h1 className={"p-10"}>Register</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="registeruser">Username</label>
-          <input
-            name="username"
-            type="text"
-            id="registeruser"
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="registerpassword">Password</label>
-          <input
-            name="password"
-            type="password"
-            id="registerpassword"
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="registeremail">Email</label>
-          <input
-            name="email"
-            type="text"
-            id="registeremail"
-            onChange={handleInputChange}
-          />
-        </div>
-        <button
-          className={
-            "p-2 rounded-lg text-blue-950 border-4 border-b-violet-600 border-cyan-400 bg-emerald-300 hover:bg-cyan-700 hover:text-blue-300"
-          }
-          type="submit"
-        >
-          Register
-        </button>
-        <label
-          className={"hover:text-fuchsia-700"}
-          onClick={() => setToggleForm(true)}
-        >
-          Login from here.
-        </label>
-      </form>
+      <div
+        className={"flex justify-center items-center shadow-md min-h-screen"}
+      >
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="registeruser">Username</label>
+            <input
+              name="username"
+              type="text"
+              id="registeruser"
+              onChange={handleInputChange}
+              className={"text-cyan-400 rounded-xl"}
+            />
+          </div>
+          <div>
+            <label htmlFor="registerpassword">Password</label>
+            <input
+              name="password"
+              type="password"
+              id="registerpassword"
+              onChange={handleInputChange}
+              className={"text-cyan-400 rounded-xl"}
+            />
+          </div>
+          <div>
+            <label htmlFor="registeremail">Email</label>
+            <input
+              name="email"
+              type="text"
+              id="registeremail"
+              onChange={handleInputChange}
+              className={"text-cyan-400 rounded-xl"}
+            />
+          </div>
+          <button
+            className={
+              "p-2 rounded-lg text-blue-950 border-4 border-b-violet-600 border-cyan-400 bg-emerald-300 hover:bg-cyan-700 hover:text-blue-300"
+            }
+            type="submit"
+          >
+            Register
+          </button>
+          <label
+            className={"hover:text-cyan-300 text-m"}
+            onClick={() => setToggleForm(true)}
+          >
+            Login from here.
+          </label>
+        </form>
+      </div>
     </>
   );
 };

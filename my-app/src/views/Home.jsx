@@ -3,7 +3,6 @@ import { useMedia } from "../hooks/apiHooks.js";
 import UserData from "../components/UI/UserData.jsx";
 
 const Home = () => {
-  // const [selectedItem, setSelectedItem] = useState(null);
   const { mediaArray } = useMedia();
   console.log(mediaArray);
 
@@ -26,11 +25,7 @@ const Home = () => {
         </thead>
         <tbody>
           {mediaArray.map((item) => (
-            <MediaRow
-              key={item.media_id}
-              item={item}
-              //      setSelectedItem={setSelectedItem}
-            />
+            <MediaRow key={item.media_id} item={item} />
           ))}
         </tbody>
       </table>

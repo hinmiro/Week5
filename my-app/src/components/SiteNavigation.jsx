@@ -5,24 +5,26 @@ const SiteNavigation = () => {
   const { handleLogout, user } = useUserContext();
 
   return (
-    <nav
-      className={
-        "flex justify-evenly text-indigo-800 bg-emerald-200 rounded-lg font-bold border-pink-600  border-b-violet-600 border-4"
-      }
-    >
-      <Link to="/">Home 🐸</Link>
-      {user && (
-        <>
-          <Link to="/profile">Profile 🐲</Link>
-          <Link to="/upload">Upload 🦄</Link>
-          <Link to="/" onClick={() => handleLogout()}>
-            Logout🔓
-          </Link>
-        </>
-      )}
+    <div className={"shadow-cyan-800 shadow-2xl"}>
+      <nav
+        className={
+          "flex justify-evenly text-indigo-800 bg-emerald-200 rounded-lg font-bold border-pink-600  border-b-violet-600 border-4"
+        }
+      >
+        <Link to="/">Home 🐸</Link>
+        {user && (
+          <>
+            <Link to="/profile">Profile 🐲</Link>
+            <Link to="/upload">Upload 🦄</Link>
+            <Link to="/" onClick={() => handleLogout()}>
+              Logout🔓
+            </Link>
+          </>
+        )}
 
-      {!user && <Link to="/login">Login🔒</Link>}
-    </nav>
+        {!user && <Link to="/login">Login🔒</Link>}
+      </nav>
+    </div>
   );
 };
 

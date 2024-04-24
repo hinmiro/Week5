@@ -1,73 +1,100 @@
-import React from "react";
 import { useState } from "react";
-import { data } from "autoprefixer";
+import { useMedia, postFile } from "../hooks/apiHooks.js";
+import { useNavigate } from "react-router-dom";
 
 const Upload = () => {
   const [file, setFile] = useState("");
-  const [name, setName] = useState("");
-  const [previewUrl, setPreviewUrl] = useState("");
+  const [inputs, setInputs] = useState({ title: "" });
+  const token = localStorage.getItem("token");
+  const { postMedia } = useMedia();
+  const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
+  const doUpload = async () => {
+    try {
+      const uploadResult = await postFile(file, token);
+      const postMediaResult = await postMedia(uploadResult, inputs, token);
+      console.log("postMediaResult: ", postMediaResult);
+      navigate("/");
+    } catch (err) {
+      console.error("Error: ", err);
+    }
+  };
+
+  const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Trying to send file");
-    const postData = {
-      cat_name: "kisuli",
-      weight: 3,
-      owner: 1,
-      filename: file,
-      birthdate: "2021-11-01",
-    };
-    const formData = new FormData();
-
-    const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1NCwibmFtZSI6IlNpbmkiLCJ1c2VybmFtZSI6IlNpbnp1IiwiZW1haWwiOiJhbm9ueW1vdXNAYXNkLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzEzMzU0OTY4LCJleHAiOjE3MTM0NDEzNjh9.EGBeZiDXCQ3WTw9c-k8BP1RFGFCbzEw3pHGy5i9SH5c";
-    const response = await fetch("http://localhost:3000/api/v1/cats/", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      method: "POST",
-      body: JSON.stringify(postData),
-    });
-
-    if (response.ok) console.log("File uploaded");
-    else console.log("Upload failed");
+    doUpload();
   };
 
   const handleFileChange = (event) => {
-    event.preventDefault();
-    const file = event.target.files[0];
-    console.log(file);
-    if (!file) {
-      setFile(null);
-      setPreviewUrl("");
+    if (event.target.files) {
+      console.log(event.target.files[0]);
+      setFile(event.target.files[0]);
     }
-    setFile(file);
-    setPreviewUrl(URL.createObjectURL(file));
+  };
+
+  const handleInputChange = (event) => {
+    setInputs({
+      ...inputs,
+      [event.target.name]: event.target.value,
+    });
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        {previewUrl && <img src={previewUrl} alt="Preview" />}
-
-        <input type="file" name="tiedosto" onChange={handleFileChange} />
-        <label htmlFor="name">Name</label>
-        <input
-          className={"bg-indigo-900"}
-          type="text"
-          name="name"
-          onChange={(event) => setName(name)}
-        />
-        <button
-          className={
-            "bg-cyan-600 border-2 rounded-lg p-2 hover:bg-cyan-300 text-neutral-950"
-          }
-          type="submit"
-        >
-          Upload file
-        </button>
-      </form>
-    </div>
+    <>
+      <div className={"flex justify-center items-center"}>
+        <form onSubmit={handleSubmit}>
+          <img
+            src={
+              file
+                ? URL.createObjectURL(file)
+                : "https://via.placeholder.com/200?text=Choose+image"
+            }
+            alt="preview"
+            width="200"
+          />
+          <div>
+            <label htmlFor="file">File</label>
+            <input
+              name="file"
+              type="file"
+              id="file"
+              accept="image/*, video/*"
+              onChange={handleFileChange}
+              className={"rounded-lg"}
+            />
+          </div>
+          <div>
+            <label htmlFor="title">Title</label>
+            <input
+              name="title"
+              type="text"
+              id="title"
+              onChange={handleInputChange}
+              className={"text-cyan-400 rounded-xl"}
+            />
+          </div>
+          <div>
+            <label htmlFor="description">Description</label>
+            <textarea
+              name="description"
+              rows={5}
+              id="description"
+              onChange={handleInputChange}
+              className={"text-cyan-400 rounded-xl"}
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            disabled={file && inputs.title.length > 3 ? false : true}
+            className={
+              "shadow-md border-4 bg-emerald-200 border-fuchsia-400 border-b-cyan-400 p-2 rounded-xl font-bold hover:bg-emerald-800 hover:text-cyan-300"
+            }
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </>
   );
 };
 
