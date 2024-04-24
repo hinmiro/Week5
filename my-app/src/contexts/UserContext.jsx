@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuthentication } from "../hooks/apiHooks.js";
+import { useAuthentication, useUser } from "../hooks/apiHooks.js";
 
 const UserContext = createContext(undefined);
 
@@ -9,6 +9,7 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState();
   const navigate = useNavigate();
   const { login } = useAuthentication();
+  const { getUserByToken } = useUser();
 
   console.log("User in userProvider: ", user);
 
@@ -18,14 +19,36 @@ export const UserProvider = ({ children }) => {
       const userData = await login(credentials);
       console.log("userdata: ", userData);
       localStorage.setItem("token", userData.token);
+      setUser(userData.user);
       navigate("/");
     } catch (err) {
       alert(err.message);
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setUser(null);
+    navigate("/");
+  };
+
+  const handleAutologin = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (token) {
+        const userData = await getUserByToken(token);
+        setUser(userData.user);
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
-    <UserContext.Provider value={{ user, setUser, handleLogin }}>
+    <UserContext.Provider
+      value={{ user, setUser, handleLogin, handleLogout, handleAutologin }}
+    >
       {children}
     </UserContext.Provider>
   );
