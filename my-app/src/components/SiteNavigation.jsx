@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 import { useUserContext } from "../contexts/UserContext.jsx";
-import handleAutoLogin from "./HandleAutoLogin.jsx";
-import { useEffect } from "react";
 
 const SiteNavigation = () => {
   const { handleLogout, user } = useUserContext();
