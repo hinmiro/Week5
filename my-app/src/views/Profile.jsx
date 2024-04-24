@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useUser } from "../hooks/apiHooks.js";
 import { useUserContext } from "../contexts/UserContext.jsx";
 import UserData from "../components/UI/UserData.jsx";
