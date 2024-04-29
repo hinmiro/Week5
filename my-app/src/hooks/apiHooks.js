@@ -25,7 +25,7 @@ const useMedia = () => {
   }, []);
 
   const postMedia = async (file, inputs, token) => {
-    const result = await fetchData(import.meta.env.VITE_MEDIA_API + "/media", {
+    return await fetchData(import.meta.env.VITE_MEDIA_API + "/media", {
       method: "POST",
       body: JSON.stringify({ ...file, ...inputs }),
       headers: {
@@ -33,7 +33,6 @@ const useMedia = () => {
         Authorization: "Bearer " + token,
       },
     });
-    return result;
   };
 
   const deleteMedia = async (id, token) => {
@@ -108,11 +107,10 @@ const useAuthentication = () => {
       },
       body: JSON.stringify(inputs),
     };
-    const loginResult = await fetchData(
+    return await fetchData(
       import.meta.env.VITE_AUTH_API + "/auth/login/",
       options,
     );
-    return loginResult;
   };
   return { login };
 };
