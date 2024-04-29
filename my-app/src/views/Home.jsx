@@ -3,7 +3,7 @@ import { useMedia } from "../hooks/apiHooks.js";
 import UserData from "../components/UI/UserData.jsx";
 
 const Home = () => {
-  const { mediaArray } = useMedia();
+  const { mediaArray, deleteMedia } = useMedia();
   console.log(mediaArray);
 
   return (
@@ -25,7 +25,11 @@ const Home = () => {
         </thead>
         <tbody>
           {mediaArray.map((item) => (
-            <MediaRow key={item.media_id} item={item} />
+            <MediaRow
+              key={item.media_id}
+              item={item}
+              deleteMedia={deleteMedia}
+            />
           ))}
         </tbody>
       </table>

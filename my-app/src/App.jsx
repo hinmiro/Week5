@@ -9,6 +9,7 @@ import Login from "./views/Login.jsx";
 import { UserProvider } from "./contexts/UserContext.jsx";
 import HandleAutoLogin from "./components/HandleAutoLogin.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import Modify from "./views/Modify.jsx";
 
 const App = () => {
   const basename = import.meta.env.BASE_URL;
@@ -39,6 +40,14 @@ const App = () => {
               />
               <Route path="/media/:id" element={<Single />} />
               <Route path="/login" element={<Login />} />
+              <Route
+                path="/modify/:id"
+                element={
+                  <ProtectedRoute>
+                    <Modify />
+                  </ProtectedRoute>
+                }
+              />
             </Route>
           </Routes>
         </UserProvider>

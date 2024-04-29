@@ -1,6 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Button from "./UI/Button.jsx";
+import PropTypes from "prop-types";
 
-const MediaRow = ({ item }) => {
+const MediaRow = ({ item, deleteMedia }) => {
+  const navigate = useNavigate();
+  const handleDelete = async () => {
+    const sure = confirm("Are you sure to delete media?");
+    if (!sure) return;
+    const token = localStorage.getItem("token");
+    const res = await deleteMedia(item.media_id, token);
+    console.log("Delete res: ", res);
+    navigate(0);
+  };
+
   return (
     <tr>
       <td>
@@ -13,12 +25,31 @@ const MediaRow = ({ item }) => {
       <td>{item.filesize}</td>
       <td>{item.media_type}</td>
       <td>
-        <Link to={`/media/${item.media_id}`} state={{ item }}>
+        <Link
+          className={"view-link"}
+          to={`/media/${item.media_id}`}
+          state={{ item }}
+        >
           View
         </Link>
+        <br />
+        <br />
+        <Link to={`/modify/${item.media_id}`}>Modify</Link>
+        <br />
+        <br />
+        <Button
+          text={"Delete"}
+          onClick={handleDelete}
+          className={"bg-red-500"}
+        />
       </td>
     </tr>
   );
+};
+
+MediaRow.propTypes = {
+  item: PropTypes.object.isRequired,
+  deleteMedia: PropTypes.func.isRequired,
 };
 
 export default MediaRow;

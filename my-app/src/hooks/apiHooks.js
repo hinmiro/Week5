@@ -35,7 +35,36 @@ const useMedia = () => {
     });
     return result;
   };
-  return { mediaArray, postMedia };
+
+  const deleteMedia = async (id, token) => {
+    const options = {
+      method: "DELETE",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+    return await fetchData(
+      import.meta.env.VITE_MEDIA_API + "/media/" + id,
+      options,
+    );
+  };
+
+  const getMediaById = async (id) => {
+    return await fetchData(import.meta.env.VITE_MEDIA_API + "/media/" + id);
+  };
+
+  const putMedia = async (id, inputs, token) => {
+    return await fetchData(import.meta.env.VITE_MEDIA_API + "/media/" + id, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify(inputs),
+    });
+  };
+
+  return { mediaArray, postMedia, deleteMedia, getMediaById, putMedia };
 };
 
 const useUser = () => {
