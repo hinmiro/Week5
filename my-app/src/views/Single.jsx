@@ -1,4 +1,5 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import Likes from "../components/Likes.jsx";
 
 const Single = () => {
   const location = useLocation();
@@ -40,6 +41,7 @@ const Single = () => {
             <p>{new Date(item.created_at).toLocaleString("fi-FI")}</p>
             <p>{item.filesize}</p>
             <p>{item.media_type}</p>
+            <Likes id={item.media_id} />
           </>
         )}
       </dialog>

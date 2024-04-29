@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import Button from "./UI/Button.jsx";
 import PropTypes from "prop-types";
+import Likes from "./Likes.jsx";
 
 const MediaRow = ({ item, deleteMedia }) => {
   const navigate = useNavigate();
@@ -42,6 +43,7 @@ const MediaRow = ({ item, deleteMedia }) => {
           onClick={handleDelete}
           className={"bg-red-500"}
         />
+        <Likes id={item.media_id} />
       </td>
     </tr>
   );
